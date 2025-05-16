@@ -1,11 +1,541 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DigitalUF - Temarios de Digitalización</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-color: #1DB954;
+            --bg-dark: #121212;
+            --bg-darker: #0A0A0A;
+            --bg-card: #181818;
+            --bg-card-hover: #282828;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3B3B3;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow: hidden;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--bg-darker);
+            padding: 24px 16px;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: all var(--transition-speed);
+            z-index: 2;
+        }
+
+        .content {
+            flex: 1;
+            background: linear-gradient(135deg, #1E1E1E 0%, #121212 100%);
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 250px;
+            background: linear-gradient(180deg, rgba(29,185,84,0.15) 0%, rgba(18,18,18,0) 100%);
+            pointer-events: none;
+        }
+
+        .player {
+            height: 90px;
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #282828;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            z-index: 3;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+            font-size: 28px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all var(--transition-speed);
+        }
+
+        .nav-item:hover {
+            color: var(--text-primary);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-item.active {
+            color: var(--text-primary);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .library {
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .library h2 {
+            font-size: 16px;
+            margin-bottom: 16px;
+            padding-left: 16px;
+            color: var(--text-secondary);
+        }
+
+        .library-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            padding: 12px 16px;
+            font-weight: 400;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all var(--transition-speed);
+        }
+
+        .library-item:hover {
+            color: var(--text-primary);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .library-item i {
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 24px 0;
+            animation: fadeInUp 1s ease-out;
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .uf-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .uf-item {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all var(--transition-speed);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .uf-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #4aedc4);
+            transform: scaleX(0);
+            transition: transform var(--transition-speed);
+            transform-origin: left;
+        }
+
+        .uf-item:hover {
+            background-color: var(--bg-card-hover);
+            transform: translateY(-5px);
+        }
+
+        .uf-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .uf-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .uf-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .uf-item p::before {
+            content: '\f017';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 400;
+            color: var(--accent-color);
+        }
+
+        .topics-list {
+            background-color: rgba(24, 24, 24, 0.6);
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            animation-delay: 0.6s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .topic-row {
+            display: grid;
+            grid-template-columns: 40px 1fr 100px;
+            gap: 16px;
+            padding: 16px 24px;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background-color var(--transition-speed);
+        }
+
+        .topic-row:last-child {
+            border-bottom: none;
+        }
+
+        .topic-row:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .topic-number {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .topic-name {
+            font-weight: 500;
+        }
+
+        .topic-duration {
+            color: var(--text-secondary);
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .topic-duration::before {
+            content: '\f017';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 400;
+        }
+
+        .now-playing {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+
+        .topic-title {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .uf-name {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .player-controls i {
+            color: var(--text-primary);
+            font-size: 16px;
+            opacity: 0.8;
+            transition: all var(--transition-speed);
+            cursor: pointer;
+        }
+
+        .player-controls i:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .player-controls i.fa-play-circle,
+        .player-controls i.fa-pause-circle {
+            font-size: 40px;
+            color: var(--text-primary);
+            opacity: 1;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: absolute;
+            bottom: 8px;
+            left: 350px;
+            right: 350px;
+        }
+
+        .progress-time {
+            color: var(--text-secondary);
+            font-size: 12px;
+            width: 40px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 35%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 150px;
+        }
+
+        .volume-icon {
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .volume-bar {
+            flex: 1;
+            height: 4px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .volume-bar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 65%;
+            background-color: var(--text-primary);
+            border-radius: 2px;
+        }
+
+        .volume-bar:hover::before {
+            background-color: var(--accent-color);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>test</h1>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                DigitalUF
+            </div>
+            <nav>
+                <a href="#" class="nav-item active">
+                    <i class="fa-solid fa-house"></i>
+                    Inicio
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-search"></i>
+                    Buscar
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    Biblioteca
+                </a>
+            </nav>
+            
+            <div class="library">
+                <h2>Mis UFs</h2>
+                <a href="#" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    UF1: Introducción
+                </a>
+                <a href="#" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    UF2: Digitalización
+                </a>
+                <a href="#" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    UF3: Herramientas
+                </a>
+                <a href="#" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    UF4: Proyectos
+                </a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <h1>Buenos días</h1>
+            <h2>Temarios Recientes</h2>
+            
+            <div class="uf-container">
+                <div class="uf-item">
+                    <h3>UF1: Introducción a la digitalización</h3>
+                    <p>8 temas • 3 horas</p>
+                </div>
+                
+                <div class="uf-item">
+                    <h3>UF2: Procesos de digitalización</h3>
+                    <p>12 temas • 5 horas</p>
+                </div>
+                
+                <div class="uf-item">
+                    <h3>UF3: Herramientas avanzadas</h3>
+                    <p>10 temas • 4 horas</p>
+                </div>
+            </div>
+            
+            <h2>Temarios populares</h2>
+            <div class="topics-list">
+                <div class="topic-row">
+                    <div class="topic-number">1</div>
+                    <div class="topic-name">Fundamentos de la digitalización</div>
+                    <div class="topic-duration">45 min</div>
+                </div>
+                <div class="topic-row">
+                    <div class="topic-number">2</div>
+                    <div class="topic-name">Herramientas digitales</div>
+                    <div class="topic-duration">30 min</div>
+                </div>
+                <div class="topic-row">
+                    <div class="topic-number">3</div>
+                    <div class="topic-name">Optimización de recursos</div>
+                    <div class="topic-duration">50 min</div>
+                </div>
+                <div class="topic-row">
+                    <div class="topic-number">4</div>
+                    <div class="topic-name">Soluciones en la nube</div>
+                    <div class="topic-duration">60 min</div>
+                </div>
+                <div class="topic-row">
+                    <div class="topic-number">5</div>
+                    <div class="topic-name">Seguridad informática</div>
+                    <div class="topic-duration">40 min</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="player">
+        <div class="now-playing">
+            <div class="topic-title">Fundamentos de la digitalización</div>
+            <div class="uf-name">UF1: Introducción</div>
+        </div>
+        <div class="player-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-play-circle"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+        <div class="progress-container">
+            <div class="progress-time">1:24</div>
+            <div class="progress-bar"></div>
+            <div class="progress-time">3:45</div>
+        </div>
+        <div class="volume-control">
+            <i class="fa-solid fa-volume-high volume-icon"></i>
+            <div class="volume-bar"></div>
+        </div>
+    </div>
 </body>
-</html>
+</html></a></div>
