@@ -49,21 +49,21 @@
             
             <div class="library">
                 <h2>Mis UFs</h2>
-                <a href="#" class="library-item">
+                <a href="../uf1/index.html" class="library-item">
                     <i class="fa-solid fa-book"></i>
-                    <span>RA1. Economia lineal i circular. ODS</span>
+                    <span>UF1 – Readme de totes les activitats</span>
                 </a>
-                <a href="#" class="library-item">
+                <a href="../ra1/index.html" class="library-item">
                     <i class="fa-solid fa-book"></i>
-                    <span>RA2. Quarta revolució industrial</span>
+                    <span>RA1 – Economia lineal i circular · ODS</span>
                 </a>
-                <a href="#" class="library-item">
+                <a href="../ra3/index.html" class="library-item">
                     <i class="fa-solid fa-book"></i>
-                    <span>RA3. Cloud computing</span>
+                    <span>RA3 – Cloud Computing</span>
                 </a>
-                <a href="#" class="library-item">
+                <a href="../ra5/index.html" class="library-item">
                     <i class="fa-solid fa-book"></i>
-                    <span>RA5. Pla de transformació</span>
+                    <span>RA5 – Transformació Digital</span>
                 </a>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="search-container">
                 <div class="search-input-container">
                     <i class="fa-solid fa-search"></i>
-                    <input type="text" id="search-input" class="search-input" placeholder="¿Qué quieres aprender hoy?" autofocus>
+                    <input type="text" id="search-input" class="search-input" placeholder="Buscar temarios, actividades, recursos..." autofocus>
                     <div id="search-suggestions" class="search-suggestions" style="display: none;">
                         <!-- Suggestions will be populated by JavaScript -->
                     </div>
@@ -105,10 +105,10 @@
                     </div>
                     <div class="trending-tags">
                         <span class="trending-tag">Industria 4.0</span>
-                        <span class="trending-tag">ODS</span>
+                        <span class="trending-tag">Economía Circular</span>
                         <span class="trending-tag">IoT</span>
-                        <span class="trending-tag">Cloud</span>
-                        <span class="trending-tag">IA</span>
+                        <span class="trending-tag">Cloud Computing</span>
+                        <span class="trending-tag">Digitalización</span>
                     </div>
                 </div>
             </div>
@@ -121,6 +121,44 @@
                         <div class="loading-dot"></div>
                         <div class="loading-dot"></div>
                         <div class="loading-dot"></div>
+                    </div>
+                </div>
+                
+                <!-- Course modules sections -->
+                <div class="modules-section">
+                    <h2>Módulos del curso</h2>
+                    <div class="modules-grid">
+                        <div class="module-card" onclick="window.location.href='../uf1/index.html'">
+                            <div class="module-icon"><i class="fa-solid fa-book"></i></div>
+                            <h3>UF1 – Readme de totes les activitats</h3>
+                            <p>Actividades principales y descripción general del curso</p>
+                            <div class="module-activities">5 actividades</div>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        
+                        <div class="module-card" onclick="window.location.href='../ra1/index.html'">
+                            <div class="module-icon"><i class="fa-solid fa-recycle"></i></div>
+                            <h3>RA1 – Economia lineal i circular · ODS</h3>
+                            <p>Economía circular, sostenibilidad y objetivos de desarrollo sostenible</p>
+                            <div class="module-activities">4 actividades</div>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        
+                        <div class="module-card" onclick="window.location.href='../ra3/index.html'">
+                            <div class="module-icon"><i class="fa-solid fa-cloud"></i></div>
+                            <h3>RA3 – Cloud Computing</h3>
+                            <p>Servicios en la nube, IaaS, PaaS, SaaS y aplicaciones</p>
+                            <div class="module-activities">4 actividades</div>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
+                        
+                        <div class="module-card" onclick="window.location.href='../ra5/index.html'">
+                            <div class="module-icon"><i class="fa-solid fa-digital-tachograph"></i></div>
+                            <h3>RA5 – Transformació Digital</h3>
+                            <p>Transformación digital, automatización y tendencias tecnológicas</p>
+                            <div class="module-activities">4 actividades</div>
+                            <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -138,12 +176,12 @@
                         </div>
                         <div class="recent-item">
                             <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Domótica</span>
+                            <span>Cloud computing</span>
                             <i class="fa-solid fa-arrow-right go-icon"></i>
                         </div>
                         <div class="recent-item">
                             <i class="fa-solid fa-clock-rotate-left"></i>
-                            <span>Cloud computing</span>
+                            <span>Infografia</span>
                             <i class="fa-solid fa-arrow-right go-icon"></i>
                         </div>
                     </div>
@@ -178,131 +216,279 @@
 
     <!-- Add these additional styles for the new elements -->
     <style>
-        /* Trending searches */
-        .trending-searches {
-            margin-top: 20px;
-            animation: fadeInUp 0.8s ease-out;
-            animation-delay: 0.2s;
-            opacity: 0;
-            animation-fill-mode: forwards;
+        /* Module section styles */
+        .modules-section {
+            margin-top: 60px;
         }
         
-        .trending-title {
-            font-size: 15px;
-            font-weight: 500;
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .module-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.8), rgba(18, 18, 18, 0.9));
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: left;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(29, 185, 84, 0.1);
+        }
+        
+        .module-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .module-icon {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 8px rgba(29, 185, 84, 0.4));
+        }
+        
+        .module-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .module-card p {
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .module-activities {
+            background-color: rgba(29, 185, 84, 0.15);
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        .card-arrow {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        
+        .module-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+            color: var(--accent-color);
+        }
+        
+        /* Results styling */
+        .results-section-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-        }
-        
-        .trending-title i {
-            color: #ff6b6b;
-        }
-        
-        .trending-tags {
-            display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-        }
-        
-        .trending-tag {
-            padding: 6px 16px;
-            background: linear-gradient(145deg, rgba(40, 40, 40, 0.6), rgba(30, 30, 30, 0.8));
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
-        }
-        
-        .trending-tag:hover {
-            transform: translateY(-3px);
+            font-size: 20px;
+            margin: 30px 0 15px;
             color: var(--text-primary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            background: linear-gradient(145deg, rgba(29, 185, 84, 0.1), rgba(29, 185, 84, 0.2));
-            border-color: rgba(29, 185, 84, 0.3);
         }
         
-        /* Recent searches */
-        .recent-searches {
-            margin-top: 40px;
-            margin-bottom: 60px;
+        .results-section-header i {
+            color: var(--accent-color);
         }
         
-        .recent-header {
+        .results-count {
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-left: 5px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .result-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .result-badge.temario {
+            background-color: rgba(29, 185, 84, 0.2);
+            color: var(--accent-color);
+        }
+        
+        .result-badge.actividad {
+            background-color: rgba(74, 144, 226, 0.2);
+            color: #4a90e2;
+        }
+        
+        .result-badge.recursos {
+            background-color: rgba(240, 173, 78, 0.2);
+            color: #f0ad4e;
+        }
+        
+        .result-badge.videos {
+            background-color: rgba(217, 83, 79, 0.2);
+            color: #d9534f;
+        }
+        
+        .result-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-top: 15px;
+            font-size: 13px;
         }
         
-        .recent-header h2 {
-            margin: 0;
+        .last-updated {
+            color: var(--text-secondary);
         }
         
-        .clear-history {
-            background: transparent;
-            border: none;
+        .view-more {
             color: var(--accent-color);
-            font-size: 14px;
-            cursor: pointer;
             font-weight: 500;
+            opacity: 0;
             transition: all 0.3s ease;
         }
         
-        .clear-history:hover {
-            text-decoration: underline;
-            opacity: 0.8;
+        .result-item:hover .view-more {
+            opacity: 1;
         }
         
-        .recent-items {
+        .suggestion-icon {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 18px;
         }
         
-        .recent-item {
+        .suggestion-content {
+            flex: 1;
+        }
+        
+        .suggestion-arrow {
+            color: var(--text-secondary);
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .suggestion-item {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 16px 20px;
-            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
         
-        .recent-item:hover {
-            background: linear-gradient(145deg, rgba(28, 28, 28, 0.7), rgba(22, 22, 22, 0.8));
-            transform: translateX(5px);
-        }
-        
-        .recent-item i:first-child {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-        
-        .recent-item span {
-            flex: 1;
-            font-weight: 500;
-        }
-        
-        .go-icon {
-            color: var(--accent-color);
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
-        }
-        
-        .recent-item:hover .go-icon {
+        .suggestion-item:hover .suggestion-arrow {
             opacity: 1;
-            transform: translateX(0);
+            color: var(--accent-color);
+        }
+        
+        .view-all {
+            background-color: rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-weight: 500;
+            color: var(--accent-color);
+        }
+        
+        .view-all-text {
+            width: 100%;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .empty-state i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+        
+        /* Additional fixes for search results layout */
+        .result-container {
+            display: block !important;
+        }
+        
+        .results-section-header {
+            clear: both;
+            width: 100%;
+        }
+        
+        .results-grid {
+            display: grid !important; 
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+            gap: 30px;
+            width: 100%;
+            clear: both;
+            margin-bottom: 40px;
+        }
+        
+        .result-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .result-badge {
+            z-index: 5 !important;
+        }
+        
+        .result-footer {
+            margin-top: auto;
+            padding-top: 15px;
+        }
+        
+        /* Fix for modules section if needed */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
         }
     </style>
 

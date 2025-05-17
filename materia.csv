@@ -1,0 +1,22 @@
+document,activity\_number,description
+UF1,Title,UF1 – Readme de totes les activitats
+UF1,1,"Crea una infografia en forma de línia del temps il·lustrada que representi les fites més importants de l'evolució de la indústria. Cal incloure-hi dates i descripcions breus."
+UF1,2,"Investiga sobre els sensors que es troben comunament als telèfons mòbils actuals. Selecciona'n almenys tres i proporciona una descripció detallada de com operen i per a què es fan servir. Reflexiona sobre l'ús de tecnologies 4RI en sistemes domòtics interconnectats."
+UF1,4,"Busca a internet exemples de relació entre IA i 4RI i comparteix-los en Canva o document compartit. Explora GPT Store, tria una app i exposa'n la utilitat."
+UF1,5,"Esmenta tres exemples d'aplicacions o indústries que es beneficien de l'adopció de l'IoT. Llegeix l'article sobre dispositius IoT i amplia informació."
+UF1,6,"Observa a casa dispositius IoT, enumera'ls i reflexiona com fan la vida més eficient."
+RA1,Title,RA1 – Economia lineal i circular · ODS
+RA1,1,"Debat sobre avantatges i desavantatges de l'economia lineal. Cerca a internet el punt més proper al teu lloc de residència. Llista dispositius amb obsolescència programada."
+RA1,2,"Traça el cicle de vida d'un objecte comú i crea una infografia. Analitza residus a casa i documenta tres productes reciclables o reutilitzables. Revisa errors comuns a Ecoembes."
+RA1,3,"Analitza com l'estratègia d'economia circular d'Espanya afecta el teu sector. Proposa pràctiques circulars per al teu centre d'estudis i destaca beneficis. Identifica un punt de la cadena de subministrament per implementar economia circular."
+RA1,4,"Estudi detallat d'una empresa local amb model circular: cadena de producció i gestió de recursos, reutilització, reciclatge i prolongació de vida útil. Impactes econòmics, socials i ambientals."
+RA3,Title,RA3 – Cloud Computing
+RA3,1,"Classifica serveis al núvol (IaaS/PaaS/SaaS) amb exemples reals i presenta'ls en taula o infografia."
+RA3,2,"Aula: enumera tres recursos TIC connectats al núvol amb breu descripció. Fes backup del mòbil al núvol, mostra configuració i avantatges/inconvenients."
+RA3,3,"Sector professional: analitza normatives de cloud computing per al teu sector i resumeix obligacions legals."
+RA3,4,"Explora aplicacions IoT quotidianes i descriu tres exemples; indica una aplicació IoT pel teu sector i el seu valor afegit."
+RA5,Title,RA5 – Transformació Digital i Tendències Tecnològiques
+RA5,1,"Busca un negoci local basat en automatització o digitalització industrial, indica tecnologia fonamental i explica el seu impacte en els ingressos."
+RA5,2,"Identifica una empresa sense digitalitzar, proposa tecnologies per millorar eficència (p.ex. sistema de reserves online), i explica beneficis operatius i experiència client."
+RA5,3,"IET: selecciona un repte global i investiga quatre tendències innovadores, descriu impacte en producció/distribució/consum i mediambiental."
+RA5,4,"ERP: investiga què és, localitza tres exemples, detalla dos mòduls i tres casos d'èxit amb avantatges, desavantatges i viabilitat d'implementació."

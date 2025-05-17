@@ -533,14 +533,49 @@ h1::after {
     border-radius: 3px;
 }
 
+/* Fix search results layout */
 .result-container {
+    display: block !important;
+    margin-bottom: 60px;
+}
+
+.results-section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    margin: 40px 0 20px 0;
+    color: var(--text-primary);
+    padding-left: 10px;
+    position: relative;
+    width: 100%;
+    clear: both;
+}
+
+.results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
-    margin-bottom: 60px;
-    perspective: 1000px;
+    margin-bottom: 40px;
+    position: relative;
+    width: 100%;
+    clear: both;
 }
 
+/* Fix badge positioning */
+.result-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 5;
+}
+
+/* Fix result item structure */
 .result-item {
     background: linear-gradient(145deg, rgba(24, 24, 24, 0.8), rgba(18, 18, 18, 0.9));
     border-radius: 16px;
@@ -557,6 +592,9 @@ h1::after {
     animation-fill-mode: forwards;
     cursor: pointer;
     transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .result-item::before {
