@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA3 - Activitat 1: Classificació de Models de Servei al Núvol</title>
+    <link rel="icon" href="../../../img/luz.jpeg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../search/css/style.css">
+    <style>
+        /* Document-specific styles */
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .doc-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                var(--accent-color) 0%, 
+                transparent 100%);
+        }
+
+        .doc-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .doc-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .doc-meta-item i {
+            color: var(--accent-color);
+        }
+
+        .doc-section {
+            margin: 50px 0;
+            position: relative;
+            padding-left: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .doc-content {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .doc-content p, .doc-content li {
+            margin-bottom: 15px;
+        }
+
+        .doc-content strong, .doc-content h3, .doc-content h4 {
+            color: var(--text-primary);
+        }
+
+        .doc-content h3 {
+            font-size: 20px;
+            margin: 30px 0 15px;
+        }
+
+        .doc-content h4 {
+            font-size: 18px;
+            margin: 25px 0 10px;
+        }
+
+        .doc-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.2s ease;
+        }
+
+        .doc-content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .doc-content ul, .doc-content ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .doc-content li {
+            margin-bottom: 10px;
+        }
+
+        .doc-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 20px;
+            margin: 20px 0;
+            background: rgba(29, 185, 84, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .doc-content blockquote p {
+            font-style: italic;
+            margin: 0;
+        }
+
+        .doc-code {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .doc-code pre {
+            font-family: 'Consolas', monospace;
+            color: #e6e6e6;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .doc-image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .doc-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .doc-caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .highlight {
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .conclusiones {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.8), rgba(18, 18, 18, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .conclusiones::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .conclusiones h3 {
+            color: var(--text-primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .conclusiones h3 i {
+            color: var(--accent-color);
+        }
+
+        .footnote {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Custom styles for this document */
+        .service-model-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .service-model-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-model-icon {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            font-size: 120px;
+            opacity: 0.05;
+            color: var(--accent-color);
+        }
+
+        .service-model-card.iaas h3 i {
+            color: #e74c3c;
+        }
+
+        .service-model-card.paas h3 i {
+            color: #3498db;
+        }
+
+        .service-model-card.saas h3 i {
+            color: #2ecc71;
+        }
+
+        .service-model-card.iaas .service-model-icon {
+            color: #e74c3c;
+        }
+
+        .service-model-card.paas .service-model-icon {
+            color: #3498db;
+        }
+
+        .service-model-card.saas .service-model-icon {
+            color: #2ecc71;
+        }
+
+        .example-item {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .example-item strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            width: 25%;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .bottom-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(24, 24, 24, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .now-playing {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .topic-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .uf-name {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .player-controls i {
+            font-size: 18px;
+            color: var(--accent-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .player-controls i:hover {
+            color: var(--text-primary);
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+            width: 40px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--accent-color);
+            animation: progress-animation 20s linear infinite;
+        }
+
+        @keyframes progress-animation {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-icon {
+            font-size: 18px;
+            color: var(--accent-color);
+        }
+
+        .volume-bar {
+            width: 100px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .volume-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: var(--accent-color);
+            width: 70%; /* Ajusta el valor segons el volum per defecte */
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Animated background particles -->
+        <div class="particles">
+            <div class="particle" style="width: 30px; height: 30px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="width: 20px; height: 20px; left: 30%; top: 70%; animation-delay: 2s;"></div>
+            <div class="particle" style="width: 45px; height: 45px; left: 70%; top: 40%; animation-delay: 4s;"></div>
+            <div class="particle" style="width: 15px; height: 15px; left: 60%; top: 80%; animation-delay: 6s;"></div>
+            <div class="particle" style="width: 35px; height: 35px; left: 90%; top: 10%; animation-delay: 8s;"></div>
+            <div class="particle" style="width: 25px; height: 25px; left: 20%; top: 60%; animation-delay: 10s;"></div>
+            <div class="particle" style="width: 18px; height: 18px; left: 40%; top: 30%; animation-delay: 7s;"></div>
+            <div class="particle" style="width: 22px; height: 22px; left: 85%; top: 60%; animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>DigitalUF</span>
+            </div>
+            <nav>
+                <a href="../../index.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="../../search/index.html" class="nav-item">
+                    <i class="fa-solid fa-search"></i>
+                    <span>Buscar</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <span>Biblioteca</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Estadístiques</span>
+                </a>
+            </nav>
+            
+            <div class="library">
+                <h2>Mis UFs</h2>
+                <a href="../../uf1/index.html" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span>UF1 – Readme de totes les activitats</span>
+                </a>
+                <a href="../../ra1/index.html" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span>RA1 – Economia lineal i circular · ODS</span>
+                </a>
+                <a href="../../ra2/index.html" class="library-item">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>RA2 – Quarta revolució industrial</span>
+                </a>
+                <a href="../../ra3/index.html" class="library-item active">
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>RA3 – Cloud Computing</span>
+                </a>
+                <a href="../../ra5/index.html" class="library-item">
+                    <i class="fa-solid fa-digital-tachograph"></i>
+                    <span>RA5 – Transformació Digital</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="doc-container">
+                <div class="doc-header">
+                    <div class="doc-title">Classificació de Models de Servei al Núvol</div>
+                    <p class="doc-subtitle">Investigació i classificació de serveis cloud segons el model IaaS, PaaS o SaaS</p>
+                    
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>18 de maig de 2025</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fa-solid fa-tag"></i>
+                            <span>RA3, Cloud Computing, IaaS, PaaS, SaaS</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Temps estimat: 20 min</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-cloud"></i>
+                        Introducció als Models de Servei al Núvol
+                    </h2>
+                    <div class="doc-content">
+                        <p>El <strong>cloud computing</strong> o computació al núvol representa un canvi de paradigma en la manera en què les organitzacions accedeixen i utilitzen recursos informàtics. En lloc d'haver d'adquirir i mantenir infraestructures físiques pròpies, els serveis al núvol permeten utilitzar recursos sota demanda a través d'Internet, pagant només pel que es consumeix.</p>
+                        
+                        <p>Els tres principals models de servei al núvol són:</p>
+                        
+                        <div class="service-model-card iaas">
+                            <i class="fa-solid fa-server service-model-icon"></i>
+                            <h3><i class="fa-solid fa-server"></i> Infrastructure as a Service (IaaS)</h3>
+                            <p>Proporciona infraestructura informàtica virtualitzada a través d'Internet. Els usuaris poden llogar servidors virtuals, emmagatzematge, xarxes i altres recursos fonamentals, en lloc d'adquirir i gestionar el seu propi hardware.</p>
+                            <div class="tags">
+                                <span class="tag">Control màxim</span>
+                                <span class="tag">Flexibilitat</span>
+                                <span class="tag">Recursos físics virtualitzats</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-model-card paas">
+                            <i class="fa-solid fa-code service-model-icon"></i>
+                            <h3><i class="fa-solid fa-code"></i> Platform as a Service (PaaS)</h3>
+                            <p>Ofereix una plataforma i un entorn que permet als desenvolupadors crear, provar i desplegar aplicacions sense preocupar-se per la gestió de la infraestructura subjacent. Facilita tot el necessari per al desenvolupament d'aplicacions.</p>
+                            <div class="tags">
+                                <span class="tag">Desenvolupament àgil</span>
+                                <span class="tag">Entorns preconfigurats</span>
+                                <span class="tag">Escalabilitat automàtica</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-model-card saas">
+                            <i class="fa-solid fa-desktop service-model-icon"></i>
+                            <h3><i class="fa-solid fa-desktop"></i> Software as a Service (SaaS)</h3>
+                            <p>Proporciona aplicacions completes i llestes per utilitzar a través d'Internet, generalment accessibles mitjançant un navegador web o aplicació client. Elimina la necessitat d'instal·lar, mantenir i actualitzar software localment.</p>
+                            <div class="tags">
+                                <span class="tag">Accés immediat</span>
+                                <span class="tag">Pagament per ús</span>
+                                <span class="tag">Sense manteniment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-table-list"></i>
+                        Classificació dels Conceptes
+                    </h2>
+                    <div class="doc-content">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Concepte</th>
+                                    <th>Model de Servei</th>
+                                    <th>Exemple d'ús real</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Desenvolupament/game engines d'aplicacions</strong></td>
+                                    <td>PaaS</td>
+                                    <td>Unity Cloud Build permet als desenvolupadors compilar, testar i desplegar jocs sense gestionar infraestructura. Empreses com Rovio (creadors d'Angry Birds) l'utilitzen per accelerar el desenvolupament multiplataforma.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Servidors virtuals (VM)</strong></td>
+                                    <td>IaaS</td>
+                                    <td>Una universitat utilitza servidors virtuals per proporcionar entorns de pràctiques aïllats als estudiants d'informàtica, permetent experimentar sense afectar altres sistemes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Amazon EC2 / GCP Compute</strong></td>
+                                    <td>IaaS</td>
+                                    <td>Netflix utilitza Amazon EC2 per gestionar l'escalat dinàmic dels seus servidors durant pics de visualització, com l'estrena d'una nova temporada de sèries populars.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Google App Engine</strong></td>
+                                    <td>PaaS</td>
+                                    <td>Snapchat utilitza Google App Engine per gestionar el backend de la seva aplicació, permetent escalabilitat automàtica quan milions d'usuaris comparteixen contingut simultàniament.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Microsoft 365</strong></td>
+                                    <td>SaaS</td>
+                                    <td>El Departament d'Educació d'una comunitat autònoma utilitza Microsoft 365 per proporcionar eines col·laboratives a tots els estudiants i professors, facilitant l'accés al correu, emmagatzematge i aplicacions des de qualsevol dispositiu.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Google Cloud Storage</strong></td>
+                                    <td>IaaS</td>
+                                    <td>Spotify emmagatzema i distribueix milions de cançons utilitzant Google Cloud Storage, optimitzant l'entrega de contingut segons la ubicació geogràfica dels usuaris.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Oracle Cloud Database</strong></td>
+                                    <td>PaaS</td>
+                                    <td>Una cadena hospitalària utilitza Oracle Cloud Database per gestionar històries clíniques electròniques, garantint alta disponibilitat i compliment normatiu sense gestionar la infraestructura subjacent.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Adobe Creative Cloud</strong></td>
+                                    <td>SaaS</td>
+                                    <td>Una agència de publicitat utilitza Adobe Creative Cloud per a què els seus dissenyadors accedeixin a totes les eines necessàries (Photoshop, Illustrator, etc.) pagant una subscripció mensual sense preocupar-se per l'actualització o manteniment del software.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        Anàlisi dels Models
+                    </h2>
+                    <div class="doc-content">
+                        <h3>Comparació entre els models de servei cloud</h3>
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Característica</th>
+                                    <th>IaaS</th>
+                                    <th>PaaS</th>
+                                    <th>SaaS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Control</td>
+                                    <td>Alt (SO, middleware, aplicacions)</td>
+                                    <td>Mig (aplicacions, alguns paràmetres de configuració)</td>
+                                    <td>Baix (només configuració limitada)</td>
+                                </tr>
+                                <tr>
+                                    <td>Gestió d'infraestructura</td>
+                                    <td>Client gestiona SO, middleware i aplicacions</td>
+                                    <td>Proveïdor gestiona SO i middleware</td>
+                                    <td>Proveïdor gestiona tot</td>
+                                </tr>
+                                <tr>
+                                    <td>Flexibilitat</td>
+                                    <td>Alta</td>
+                                    <td>Mitjana</td>
+                                    <td>Baixa</td>
+                                </tr>
+                                <tr>
+                                    <td>Coneixements tècnics requerits</td>
+                                    <td>Alts</td>
+                                    <td>Mitjans</td>
+                                    <td>Baixos</td>
+                                </tr>
+                                <tr>
+                                    <td>Escalabilitat</td>
+                                    <td>Manual o automatitzada</td>
+                                    <td>Automatitzada</td>
+                                    <td>Gestionada pel proveïdor</td>
+                                </tr>
+                                <tr>
+                                    <td>Exemples</td>
+                                    <td>AWS EC2, Azure VMs, GCP Compute</td>
+                                    <td>Heroku, AWS Elastic Beanstalk, Google App Engine</td>
+                                    <td>Google Workspace, Microsoft 365, Salesforce</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Distribució Típica d'ús per Sectors
+                    </h2>
+                    <div class="doc-content">
+                        <p>La selecció del model de servei cloud adequat depèn en gran mesura de les necessitats específiques de cada organització, el seu sector d'activitat i els seus objectius estratègics. Aquí es mostra una distribució típica d'ús segons sectors:</p>
+                        
+                        <h3>Sector Tecnològic i Startups</h3>
+                        <ul>
+                            <li><strong>IaaS (40%):</strong> Les empreses tecnològiques solen preferir el control i la flexibilitat que ofereix IaaS, especialment per a entorns de desenvolupament i proves.</li>
+                            <li><strong>PaaS (40%):</strong> Les startups i equips de desenvolupament utilitzen freqüentment PaaS per accelerar el time-to-market de les seves solucions.</li>
+                            <li><strong>SaaS (20%):</strong> Per a funcions no crítiques o que no formen part del core del negoci (com CRM o eines de col·laboració).</li>
+                        </ul>
+                        
+                        <h3>Sector Financer</h3>
+                        <ul>
+                            <li><strong>IaaS (50%):</strong> Predominant per la necessitat de control i seguretat en la gestió de dades sensibles.</li>
+                            <li><strong>PaaS (20%):</strong> Per al desenvolupament d'aplicacions internes o APIs.</li>
+                            <li><strong>SaaS (30%):</strong> Per a funcions estandarditzades com gestió de recursos humans o col·laboració.</li>
+                        </ul>
+                        
+                        <h3>Sector Educatiu</h3>
+                        <ul>
+                            <li><strong>IaaS (10%):</strong> Limitat a institucions amb departaments TIC grans.</li>
+                            <li><strong>PaaS (20%):</strong> Per a projectes de recerca o desenvolupament acadèmic.</li>
+                            <li><strong>SaaS (70%):</strong> Predominant per la facilitat d'ús i baix manteniment (Google Workspace, Microsoft 365 Education).</li>
+                        </ul>
+                        
+                        <h3>Sector Sanitari</h3>
+                        <ul>
+                            <li><strong>IaaS (30%):</strong> Per sistemes crítics amb requisits específics de compliment regulatori.</li>
+                            <li><strong>PaaS (30%):</strong> Per al desenvolupament d'aplicacions mèdiques i processament de dades.</li>
+                            <li><strong>SaaS (40%):</strong> Per a sistemes de gestió hospitalària, telemedicina i col·laboració.</li>
+                        </ul>                    </div>
+                </div>
+                
+                <div class="conclusiones">
+                    <h3><i class="fa-solid fa-lightbulb"></i> Conclusions</h3>
+                    <p>Els models de servei al núvol (IaaS, PaaS i SaaS) representen diferents nivells d'abstracció i control sobre els recursos informàtics. La selecció del model més adequat depèn de factors com:</p>
+                    <ul>
+                        <li>El grau de control que l'organització necessita sobre els recursos</li>
+                        <li>Les capacitats tècniques de l'equip intern</li>
+                        <li>La naturalesa de les aplicacions que s'executaran</li>
+                        <li>Els requisits de seguretat i compliment normatiu</li>
+                        <li>El pressupost disponible</li>
+                    </ul>
+                    <p>Amb l'evolució constant del cloud computing, cada cop més organitzacions estan adoptant un enfocament híbrid, combinant diferents models de servei segons les seves necessitats específiques. Aquesta estratègia permet aprofitar els avantatges de cada model mentre es minimitzen les seves limitacions.</p>
+                </div>
+                
+                <div class="bottom-navigation">
+                    <a href="../index.html" class="nav-button prev">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <div>
+                            <div class="nav-direction">torna a</div>
+                            <div class="nav-title">RA3 - Índex</div>
+                        </div>
+                    </a>
+                    <a href="e2.html" class="nav-button next">
+                        <div>
+                            <div class="nav-direction">següent</div>
+                            <div class="nav-title">Activitat 2: Models de desplegament al núvol</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="player">
+        <div class="now-playing">
+            <div class="topic-title">RA3. Cloud Computing</div>
+            <div class="uf-name">Activitat 1: Models de Servei al Núvol</div>
+        </div>
+        <div class="player-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-backward"></i>
+            <i class="fa-solid fa-play-circle"></i>
+            <i class="fa-solid fa-forward"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+        <div class="progress-container">
+            <div class="progress-time">0:00</div>
+            <div class="progress-bar"></div>
+            <div class="progress-time">20:00</div>
+        </div>
+        <div class="volume-control">
+            <i class="fa-solid fa-volume-high volume-icon"></i>
+            <div class="volume-bar"></div>
+        </div>
+    </div>
+
+    <!-- Additional script for visual enhancements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate particles with random movements
+            const particles = document.querySelectorAll('.particle');
+            
+            particles.forEach(particle => {
+                // Set random starting positions
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                
+                // Set random sizes
+                const size = Math.random() * 30 + 10;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Set random animation delays
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+            });
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

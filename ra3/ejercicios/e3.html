@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA3 - Activitat 3: Normatives i legislació en Cloud Computing</title>
+    <link rel="icon" href="../../../img/luz.jpeg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../search/css/style.css">
+    <style>
+        /* Document-specific styles */
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .doc-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                var(--accent-color) 0%, 
+                transparent 100%);
+        }
+
+        .doc-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .doc-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .doc-meta-item i {
+            color: var(--accent-color);
+        }
+
+        .doc-section {
+            margin: 50px 0;
+            position: relative;
+            padding-left: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .doc-content {
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .doc-content p, .doc-content li {
+            margin-bottom: 15px;
+        }
+
+        .doc-content strong, .doc-content h3, .doc-content h4 {
+            color: var(--text-primary);
+        }
+
+        .doc-content h3 {
+            font-size: 20px;
+            margin: 30px 0 15px;
+        }
+
+        .doc-content h4 {
+            font-size: 18px;
+            margin: 25px 0 10px;
+        }
+
+        .doc-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color);
+            transition: all 0.2s ease;
+        }
+
+        .doc-content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .doc-content ul, .doc-content ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .doc-content li {
+            margin-bottom: 10px;
+        }
+
+        .doc-content blockquote {
+            border-left: 4px solid var(--accent-color);
+            padding: 10px 20px;
+            margin: 20px 0;
+            background: rgba(29, 185, 84, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .doc-content blockquote p {
+            font-style: italic;
+            margin: 0;
+        }
+
+        .doc-code {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .doc-code pre {
+            font-family: 'Consolas', monospace;
+            color: #e6e6e6;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .doc-image-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .doc-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .doc-caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .highlight {
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            text-align: left;
+            padding: 15px;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .conclusiones {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.8), rgba(18, 18, 18, 0.9));
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .conclusiones::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .conclusiones h3 {
+            color: var(--text-primary);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .conclusiones h3 i {
+            color: var(--accent-color);
+        }
+
+        .footnote {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Custom styles for this document */
+        .regulation-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .regulation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .regulation-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .regulation-card h3 i {
+            color: var(--accent-color);
+        }
+
+        .agency-section {
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .agency-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+
+        .agency-title i {
+            color: var(--accent-color);
+        }
+
+        .obligation-box {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .obligation-box h4 {
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .obligation-box ul {
+            margin-bottom: 0;
+        }
+
+        /* Bottom navigation buttons */
+        .bottom-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+        }
+
+        .nav-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateY(-3px);
+        }
+
+        .nav-button i {
+            color: var(--accent-color);
+            font-size: 18px;
+        }
+
+        .nav-direction {
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+
+        .nav-title {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* Player styles */
+        .player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .now-playing {
+            flex: 1;
+        }
+
+        .topic-title {
+            font-size: 12px;
+            color: var(--accent-color);
+            margin-bottom: 3px;
+        }
+
+        .uf-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .player-controls {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .player-controls i {
+            color: var(--text-secondary);
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .player-controls i:hover {
+            color: var(--text-primary);
+        }
+
+        .player-controls .fa-play-circle {
+            color: var(--accent-color);
+            font-size: 24px;
+        }
+
+        .progress-container {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-time {
+            color: var(--text-secondary);
+            font-size: 12px;
+            min-width: 35px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .progress-bar:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 20%;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 20px;
+        }
+
+        .volume-icon {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .volume-bar {
+            width: 60px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .volume-bar:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 70%;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Animated background particles -->
+        <div class="particles">
+            <div class="particle" style="width: 30px; height: 30px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="width: 20px; height: 20px; left: 30%; top: 70%; animation-delay: 2s;"></div>
+            <div class="particle" style="width: 45px; height: 45px; left: 70%; top: 40%; animation-delay: 4s;"></div>
+            <div class="particle" style="width: 15px; height: 15px; left: 60%; top: 80%; animation-delay: 6s;"></div>
+            <div class="particle" style="width: 35px; height: 35px; left: 90%; top: 10%; animation-delay: 8s;"></div>
+            <div class="particle" style="width: 25px; height: 25px; left: 20%; top: 60%; animation-delay: 10s;"></div>
+            <div class="particle" style="width: 18px; height: 18px; left: 40%; top: 30%; animation-delay: 7s;"></div>
+            <div class="particle" style="width: 22px; height: 22px; left: 85%; top: 60%; animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>DigitalUF</span>
+            </div>
+            <nav>
+                <a href="../../index.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="../../search/index.html" class="nav-item">
+                    <i class="fa-solid fa-search"></i>
+                    <span>Buscar</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <span>Biblioteca</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Estadísticas</span>
+                </a>
+            </nav>
+            
+            <div class="library">
+                <h2>Mis UFs</h2>
+                <a href="../../uf1/index.html" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span>UF1 – Readme de totes les activitats</span>
+                </a>
+                <a href="../../ra1/index.html" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span>RA1 – Economia lineal i circular · ODS</span>
+                </a>
+                <a href="../../ra2/index.html" class="library-item">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>RA2 – Quarta revolució industrial</span>
+                </a>
+                <a href="../../ra3/index.html" class="library-item active">
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>RA3 – Cloud Computing</span>
+                </a>
+                <a href="../../ra5/index.html" class="library-item">
+                    <i class="fa-solid fa-digital-tachograph"></i>
+                    <span>RA5 – Transformació Digital</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="doc-container">
+                <div class="doc-header">
+                    <div class="doc-title">Normatives i Legislació en Cloud Computing</div>
+                    <p class="doc-subtitle">Anàlisi de les normatives sobre cloud computing aplicades al sector sanitari</p>
+                    
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>18 de maig de 2025</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fa-solid fa-tag"></i>
+                            <span>RA3, Cloud Computing, Normatives, Legislació, RGPD</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Temps estimat: 30 min</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        Sector Sanitari i Cloud Computing
+                    </h2>
+                    <div class="doc-content">
+                        <p>El sector sanitari és especialment sensible pel que fa a la gestió de dades, ja que tracta amb informació de salut altament confidencial. L'adopció del cloud computing en aquest àmbit ofereix nombrosos avantatges, com l'accés ràpid a la informació clínica, l'optimització de recursos i la millora de la col·laboració entre professionals sanitaris. No obstant això, aquesta adopció s'ha de fer complint un marc normatiu exigent.</p>
+                        
+                        <div class="doc-image-container">
+                            <img src="https://placehold.co/800x400/1a1a1a/1DB954/?text=Sanitat+i+Cloud+Computing" class="doc-image" alt="Representació de cloud computing en l'àmbit sanitari">
+                            <div class="doc-caption">La digitalització del sector sanitari ha d'equilibrar innovació i seguretat de les dades</div>
+                        </div>
+                        
+                        <p>Aquest document analitza les principals normatives que afecten l'ús del cloud computing en el sector sanitari, amb particular atenció a les directrius proporcionades per l'Agència Espanyola de Protecció de Dades (AEPD) i l'Agència Europea de Protecció de Dades (EDPB), així com les obligacions legals que han de complir les empreses d'aquest sector.</p>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-gavel"></i>
+                        Normatives sobre Cloud Computing al Sector Sanitari
+                    </h2>
+                    <div class="doc-content">
+                        <p>Les següents normatives són especialment rellevants per al sector sanitari quan s'implementen solucions de cloud computing:</p>
+                        
+                        <div class="regulation-card">
+                            <h3><i class="fa-solid fa-shield-alt"></i> Reglament General de Protecció de Dades (RGPD)</h3>
+                            <p>Marc general europeu que regula el tractament de dades personals, amb especial atenció a les dades sanitàries, considerades de categoria especial (art. 9 RGPD).</p>
+                            <p><strong>Implicacions per al sector sanitari:</strong></p>
+                            <ul>
+                                <li>Requereix una base legal específica per al tractament de dades de salut.</li>
+                                <li>Obligació d'implementar mesures tècniques i organitzatives adequades.</li>
+                                <li>Deure d'informar als pacients sobre l'ús de les seves dades.</li>
+                                <li>Possible necessitat de nomenar un Delegat de Protecció de Dades (DPD).</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="regulation-card">
+                            <h3><i class="fa-solid fa-file-contract"></i> Llei Orgànica 3/2018 (LOPDGDD)</h3>
+                            <p>Adaptació espanyola del RGPD que complementa i precisa alguns aspectes específics per al territori espanyol.</p>
+                            <p><strong>Implicacions per al sector sanitari:</strong></p>
+                            <ul>
+                                <li>Concreta les bases jurídiques per al tractament de dades de salut.</li>
+                                <li>Especifica requisits addicionals per a la història clínica electrònica.</li>
+                                <li>Regula aspectes específics del consentiment en l'àmbit sanitari.</li>
+                                <li>Estableix responsabilitats per als professionals sanitaris respecte a la confidencialitat.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="regulation-card">
+                            <h3><i class="fa-solid fa-user-md"></i> Llei 41/2002, reguladora de l'autonomia del pacient</h3>
+                            <p>Estableix com s'ha de gestionar la informació i documentació clínica, afectant directament l'emmagatzematge al núvol.</p>
+                            <p><strong>Implicacions per al sector sanitari:</strong></p>
+                            <ul>
+                                <li>Determina els requisits per a l'accés a la història clínica.</li>
+                                <li>Estableix períodes de conservació de la informació clínica.</li>
+                                <li>Regula el dret d'accés del pacient a la seva informació sanitària.</li>
+                                <li>Defineix requisits de seguretat per a la custòdia de la documentació clínica.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="regulation-card">
+                            <h3><i class="fa-solid fa-lock"></i> Real Decret 1720/2007</h3>
+                            <p>Estableix mesures de seguretat específiques per a dades de salut, classificades com a nivell alt.</p>
+                            <p><strong>Implicacions per al sector sanitari:</strong></p>
+                            <ul>
+                                <li>Defineix controls d'accés reforçats per a dades de salut.</li>
+                                <li>Exigeix xifrat en les transmissions de dades per xarxes públiques.</li>
+                                <li>Obliga a mantenir registres d'accés detallats.</li>
+                                <li>Requereix còpies de seguretat en ubicacions diferents a les d'origen.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="regulation-card">
+                            <h3><i class="fa-solid fa-sitemap"></i> Esquema Nacional de Seguretat (ENS)</h3>
+                            <p>Obligatori per a entitats públiques i recomanat per a privades, estableix principis i requisits per a la protecció adequada de la informació.</p>
+                            <p><strong>Implicacions per al sector sanitari:</strong></p>
+                            <ul>
+                                <li>Estableix nivells de seguretat segons la sensibilitat de la informació.</li>
+                                <li>Defineix mesures de protecció específiques per a cada nivell.</li>
+                                <li>Requereix auditories periòdiques dels sistemes d'informació.</li>
+                                <li>Obliga a desenvolupar una política de seguretat documentada.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-balance-scale"></i>
+                        Legislació segons AEPD i EDPB
+                    </h2>
+                    <div class="doc-content">
+                        <p>Les principals agències de protecció de dades han desenvolupat directrius específiques per a la implementació de tecnologies com IoT, cloud computing i edge computing, especialment rellevants per al sector sanitari:</p>
+                        
+                        <div class="agency-section">
+                            <h3 class="agency-title"><i class="fa-solid fa-building-shield"></i> AEPD (Agència Espanyola de Protecció de Dades)</h3>
+                            
+                            <ul>
+                                <li><strong>Guia sobre l'ús de cookies:</strong> Aplicable a dispositius IoT sanitaris que recullen dades d'usuari o pacient. Estableix la necessitat d'informar i obtenir el consentiment per a la recollida de dades mitjançant aquests dispositius.</li>
+                                <li><strong>Guia de cloud computing:</strong> Especifica les garanties que han d'oferir els proveïdors del núvol, com mesures de seguretat, acords de nivell de servei (SLA) i localització de dades, aspectes crítics per a la informació sanitària.</li>
+                                <li><strong>Directrius sobre transferències internacionals de dades:</strong> Rellevants quan les dades s'emmagatzemen en servidors fora de l'EEE, un punt especialment sensible per a les dades sanitàries que requereixen garanties reforçades.</li>
+                                <li><strong>Guia d'Anàlisi de Risc:</strong> Metodologia per avaluar riscos abans d'implementar solucions tecnològiques, essencial per a centres sanitaris que vulguin adoptar el cloud computing.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="agency-section">
+                            <h3 class="agency-title"><i class="fa-solid fa-globe"></i> EDPB (Comitè Europeu de Protecció de Dades)</h3>
+                            
+                            <ul>
+                                <li><strong>Directrius 05/2021 sobre la interacció entre l'aplicació del RGPD i la Directiva ePrivacy:</strong> Rellevant per a la recollida de dades mitjançant sensors i dispositius connectats en entorns sanitaris.</li>
+                                <li><strong>Recomanacions 01/2020 sobre mesures que complementen les eines de transferència:</strong> Estableixen requisits addicionals per a la protecció de dades quan s'utilitzen serveis cloud amb proveïdors fora de la UE, un aspecte crític per al sector sanitari.</li>
+                                <li><strong>Dictamen 8/2014 sobre IoT:</strong> Estableix obligacions específiques per als fabricants i desenvolupadors de dispositius IoT, incloent dispositius mèdics connectats utilitzats en hospitals i centres sanitaris.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="doc-image-container">
+                            <img src="https://placehold.co/800x400/1a1a1a/1DB954/?text=IoT+i+dispositius+m%C3%A8dics+connectats" class="doc-image" alt="Dispositius mèdics connectats">
+                            <div class="doc-caption">Dispositius mèdics connectats recullen dades sensibles de salut i han de complir amb requisits específics de privadesa</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="doc-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                        Obligacions legals per a empreses del sector sanitari
+                    </h2>
+                    <div class="doc-content">
+                        <p>Les empreses i institucions del sector sanitari que utilitzin solucions de cloud computing han de complir amb les següents obligacions legals:</p>
+                        
+                        <div class="obligation-box">
+                            <h4>Avaluació d'Impacte (EIPD)</h4>
+                            <ul>
+                                <li>Obligatòria abans d'implementar solucions de cloud computing per a dades sanitàries.</li>
+                                <li>Ha de documentar riscos i mesures adoptades per mitigar-los.</li>
+                                <li>Necessita revisar-se periòdicament (recomanable anualment o després de canvis significatius).</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Selecció del proveïdor</h4>
+                            <ul>
+                                <li>Verificar que compleixi amb els estàndards de seguretat i certificacions (ISO 27001, 27017, 27018).</li>
+                                <li>Assegurar que el proveïdor ofereixi garanties de compliment del RGPD i altres normatives aplicables.</li>
+                                <li>Comprovar que disposi d'experiència prèvia en el sector sanitari i entengui els seus requisits específics.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Contracte de tractament de dades</h4>
+                            <ul>
+                                <li>Establir un contracte detallat amb el proveïdor del núvol que inclogui:
+                                    <ul>
+                                        <li>Finalitat i durada del tractament</li>
+                                        <li>Mesures de seguretat implementades</li>
+                                        <li>Obligacions de confidencialitat</li>
+                                        <li>Procediments d'auditoria</li>
+                                        <li>Pla de devolució/destrucció de dades al finalitzar el contracte</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Transparència i drets dels pacients</h4>
+                            <ul>
+                                <li>Informar als pacients de l'ús de tecnologies al núvol per gestionar les seves dades.</li>
+                                <li>Implementar procediments per garantir que els pacients puguin exercir els seus drets (accés, rectificació, supressió, etc.).</li>
+                                <li>Mantenir un registre d'activitats de tractament actualitzat segons l'art. 30 del RGPD.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Mesures tècniques obligatòries</h4>
+                            <ul>
+                                <li>Xifrat de dades tant en trànsit com en repòs.</li>
+                                <li>Mecanismes d'autenticació multifactor.</li>
+                                <li>Registre d'accessos i activitats (logs).</li>
+                                <li>Còpies de seguretat regulars i proves de recuperació.</li>
+                                <li>Pseudonimització o anonimització de dades quan sigui possible.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Notificació de violacions de seguretat</h4>
+                            <ul>
+                                <li>Establir un protocol per detectar i notificar bretxes de seguretat en un termini màxim de 72 hores.</li>
+                                <li>Mantenir un registre de totes les violacions de seguretat.</li>
+                                <li>Disposar d'un pla de resposta a incidents que minimitzi l'impacte sobre els pacients afectats.</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="obligation-box">
+                            <h4>Localització de les dades</h4>
+                            <ul>
+                                <li>Preferiblement, les dades han de romandre dins de l'Espai Econòmic Europeu.</li>
+                                <li>En cas de transferències internacionals, s'han d'implementar garanties addicionals.</li>
+                                <li>Mantenir un registre actualitzat de la ubicació física de les dades de salut.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="conclusiones">
+                    <h3><i class="fa-solid fa-lightbulb"></i> Conclusions</h3>
+                    <p>El sector sanitari s'enfronta a un entorn regulatori complex però necessari quan s'implementen solucions de cloud computing. Les dades sanitàries, considerades especialment sensibles, requereixen mesures de protecció reforçades i el compliment estricte de múltiples normatives tant a nivell nacional com europeu.</p>
+                    <p>L'evolució constant de les tecnologies com IoT i edge computing en l'àmbit sanitari fa necessària una actualització contínua dels coneixements sobre el marc legal i les directrius específiques proporcionades per les autoritats de protecció de dades.</p>
+                    <p>Les organitzacions sanitàries que adoptin un enfocament proactiu en el compliment normatiu, no només evitaran possibles sancions, sinó que també guanyaran la confiança dels seus pacients i milloraran la seguretat general dels seus sistemes d'informació.</p>
+                </div>
+                
+                <div class="bottom-navigation">
+                    <a href="e2.html" class="nav-button prev">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <div>
+                            <div class="nav-direction">anterior</div>
+                            <div class="nav-title">Recursos Cloud i Còpies de Seguretat</div>
+                        </div>
+                    </a>
+                    <a href="e4.html" class="nav-button next">
+                        <div>
+                            <div class="nav-direction">següent</div>
+                            <div class="nav-title">Activitat 4: Cloud Technologies</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="player">
+        <div class="now-playing">
+            <div class="topic-title">RA3. Cloud Computing</div>
+            <div class="uf-name">Activitat 3: Normatives i Legislació</div>
+        </div>
+        <div class="player-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-backward"></i>
+            <i class="fa-solid fa-play-circle"></i>
+            <i class="fa-solid fa-forward"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+        <div class="progress-container">
+            <div class="progress-time">0:00</div>
+            <div class="progress-bar"></div>
+            <div class="progress-time">30:00</div>
+        </div>
+        <div class="volume-control">
+            <i class="fa-solid fa-volume-high volume-icon"></i>
+            <div class="volume-bar"></div>
+        </div>
+    </div>
+
+    <!-- Additional script for visual enhancements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate particles with random movements
+            const particles = document.querySelectorAll('.particle');
+            
+            particles.forEach(particle => {
+                // Set random starting positions
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                
+                // Set random sizes
+                const size = Math.random() * 30 + 10;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Set random animation delays
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+            });
+
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

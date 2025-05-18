@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA3 - Cloud Computing</title>
+    <link rel="icon" href="../../img/luz.jpeg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../search/css/style.css">
+    <style>
+        /* Module index specific styles */
+        .module-header {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.8), rgba(18, 18, 18, 0.9));
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .module-icon {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            font-size: 200px;
+            opacity: 0.1;
+            color: var(--accent-color);
+            transform: rotate(15deg);
+        }
+
+        .module-title {
+            font-size: 48px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .module-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .module-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .module-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .module-meta-item i {
+            color: var(--accent-color);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .overview-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
+            border-radius: 16px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .overview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .overview-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .overview-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .overview-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .overview-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .activities-section {
+            padding: 30px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .activity-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .activity-header {
+            background: var(--accent-gradient);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .activity-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bg-dark);
+        }
+
+        .activity-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .activity-status.completed {
+            background-color: rgba(25, 135, 84, 0.2);
+            color: #20c997;
+        }
+
+        .activity-status.pending {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        .activity-content {
+            padding: 25px;
+        }
+
+        .activity-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .activity-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .activity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .activity-date {
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activity-date i {
+            color: var(--accent-color);
+        }
+
+        .activity-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(29, 185, 84, 0.15);
+            color: var(--accent-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .activity-link:hover {
+            background: rgba(29, 185, 84, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .resources-section {
+            margin-top: 60px;
+            padding: 30px 0;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .resource-card {
+            background: linear-gradient(145deg, rgba(24, 24, 24, 0.6), rgba(18, 18, 18, 0.7));
+            border-radius: 16px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: left;
+        }
+
+        .resource-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .resource-icon {
+            font-size: 28px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .resource-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            font-size: 14px;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Animated background particles -->
+        <div class="particles">
+            <div class="particle" style="width: 30px; height: 30px; left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="width: 20px; height: 20px; left: 30%; top: 70%; animation-delay: 2s;"></div>
+            <div class="particle" style="width: 45px; height: 45px; left: 70%; top: 40%; animation-delay: 4s;"></div>
+            <div class="particle" style="width: 15px; height: 15px; left: 60%; top: 80%; animation-delay: 6s;"></div>
+            <div class="particle" style="width: 35px; height: 35px; left: 90%; top: 10%; animation-delay: 8s;"></div>
+            <div class="particle" style="width: 25px; height: 25px; left: 20%; top: 60%; animation-delay: 10s;"></div>
+            <div class="particle" style="width: 18px; height: 18px; left: 40%; top: 30%; animation-delay: 7s;"></div>
+            <div class="particle" style="width: 22px; height: 22px; left: 85%; top: 60%; animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>DigitalUF</span>
+            </div>
+            <nav>
+                <a href="../../index.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="../search/index.html" class="nav-item">
+                    <i class="fa-solid fa-search"></i>
+                    <span>Buscar</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-bookmark"></i>
+                    <span>Biblioteca</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Estadísticas</span>
+                </a>
+            </nav>
+            
+            <div class="library">
+                <h2>Mis UFs</h2>
+                <a href="../uf1/index.html" class="library-item">
+                    <i class="fa-solid fa-book"></i>
+                    <span>UF1 – Readme de totes les activitats</span>
+                </a>
+                <a href="../ra1/index.html" class="library-item">
+                    <i class="fa-solid fa-recycle"></i>
+                    <span>RA1 – Economia lineal i circular · ODS</span>
+                </a>
+                <a href="../ra2/index.html" class="library-item">
+                    <i class="fa-solid fa-microchip"></i>
+                    <span>RA2 – Quarta revolució industrial</span>
+                </a>
+                <a href="index.html" class="library-item active">
+                    <i class="fa-solid fa-cloud"></i>
+                    <span>RA3 – Cloud Computing</span>
+                </a>
+                <a href="../ra5/index.html" class="library-item">
+                    <i class="fa-solid fa-digital-tachograph"></i>
+                    <span>RA5 – Transformació Digital</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="module-container">
+                <div class="module-header">
+                    <div class="module-icon">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h1 class="module-title">Cloud Computing</h1>
+                    <p class="module-subtitle">
+                        Estudi de les tecnologies al núvol, des dels fonaments fins a les implementacions avançades, 
+                        explorant els diferents models de servei, arquitectures i estratègies de migració per transformar 
+                        la infraestructura IT tradicional.
+                    </p>
+
+                    <div class="module-meta">
+                        <div class="module-meta-item">
+                            <i class="fa-solid fa-layer-group"></i>
+                            <span>Resultat d'Aprenentatge 3</span>
+                        </div>
+                        <div class="module-meta-item">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span>Gener - Març 2025</span>
+                        </div>
+                        <div class="module-meta-item">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>4 Activitats</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overview-grid">
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="overview-title">Arquitectura Cloud</h3>
+                        <p class="overview-description">
+                            Comprendràs els fonaments de l'arquitectura cloud, els seus components i com s'integren 
+                            per proporcionar serveis escalables, flexibles i resilients en un entorn distribuït.
+                        </p>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <h3 class="overview-title">Models de Servei</h3>
+                        <p class="overview-description">
+                            Exploraràs en detall els diferents models de servei (IaaS, PaaS, SaaS, FaaS) i com seleccionar 
+                            el més adequat segons les necessitats específiques de cada cas d'ús empresarial.
+                        </p>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3 class="overview-title">Proveïdors Cloud</h3>
+                        <p class="overview-description">
+                            Analitzaràs els principals proveïdors de serveis cloud, les seves ofertes més destacades i 
+                            les diferències clau entre ells per poder fer una elecció informada.
+                        </p>
+                    </div>
+                    
+                    <div class="overview-card">
+                        <div class="overview-icon">
+                            <i class="fa-solid fa-shield-alt"></i>
+                        </div>
+                        <h3 class="overview-title">Seguretat al Núvol</h3>
+                        <p class="overview-description">
+                            Aprendràs les millors pràctiques de seguretat en entorns cloud, estratègies de mitigació 
+                            de riscos i com garantir la protecció de dades en ambients multi-inquilí.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="activities-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-tasks"></i>
+                        Activitats
+                    </h2>
+                    
+                    <div class="activities-grid">
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <div class="activity-number">01</div>
+                                <div class="activity-status pending">Pendent</div>
+                            </div>
+                            <div class="activity-content">
+                                <h3 class="activity-title">Introducció al Cloud Computing</h3>
+                                <p class="activity-description">
+                                    Explora els conceptes fonamentals del cloud computing, els seus avantatges i com està 
+                                    transformant la manera en què les organitzacions despleguen i gestionen els seus recursos IT.
+                                </p>
+                                <div class="activity-meta">
+                                    <div class="activity-date">
+                                        <i class="fa-solid fa-calendar"></i>
+                                        <span>Gener 2025</span>
+                                    </div>
+                                    <a href="ejercicios/e1.html" class="activity-link">
+                                        <span>Veure activitat</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <div class="activity-number">02</div>
+                                <div class="activity-status pending">Pendent</div>
+                            </div>
+                            <div class="activity-content">
+                                <h3 class="activity-title">Models de Servei Cloud</h3>
+                                <p class="activity-description">
+                                    Analitza els diferents models de servei cloud (IaaS, PaaS, SaaS) i els seus casos d'ús, 
+                                    comparant les seves característiques i aplicabilitat en diversos escenaris empresarials.
+                                </p>
+                                <div class="activity-meta">
+                                    <div class="activity-date">
+                                        <i class="fa-solid fa-calendar"></i>
+                                        <span>Febrer 2025</span>
+                                    </div>
+                                    <a href="ejercicios/e2.html" class="activity-link">
+                                        <span>Veure activitat</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <div class="activity-number">03</div>
+                                <div class="activity-status pending">Pendent</div>
+                            </div>
+                            <div class="activity-content">
+                                <h3 class="activity-title">Proveïdors i Solucions Cloud</h3>
+                                <p class="activity-description">
+                                    Estudia els principals proveïdors de serveis cloud (AWS, Azure, Google Cloud) i les seves 
+                                    solucions destacades, identificant les seves fortaleses i consideracions clau.
+                                </p>
+                                <div class="activity-meta">
+                                    <div class="activity-date">
+                                        <i class="fa-solid fa-calendar"></i>
+                                        <span>Febrer 2025</span>
+                                    </div>
+                                    <a href="ejercicios/e3.html" class="activity-link">
+                                        <span>Veure activitat</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-card">
+                            <div class="activity-header">
+                                <div class="activity-number">04</div>
+                                <div class="activity-status pending">Pendent</div>
+                            </div>
+                            <div class="activity-content">
+                                <h3 class="activity-title">Migració i Seguretat al Cloud</h3>
+                                <p class="activity-description">
+                                    Investiga les estratègies de migració al cloud i les millors pràctiques de seguretat, 
+                                    incloent la gestió de riscos, compliment normatiu i protecció de dades.
+                                </p>
+                                <div class="activity-meta">
+                                    <div class="activity-date">
+                                        <i class="fa-solid fa-calendar"></i>
+                                        <span>Març 2025</span>
+                                    </div>
+                                    <a href="ejercicios/e4.html" class="activity-link">
+                                        <span>Veure activitat</span>
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resources-section">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-book"></i>
+                        Recursos Recomanats
+                    </h2>
+                    
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <h3 class="resource-title">Cloud Computing: Concepts, Technology & Architecture</h3>
+                            <p class="resource-description">
+                                Llibre que cobreix els fonaments del cloud computing, patrons d'arquitectura, tecnologies 
+                                i estratègies d'implementació amb casos pràctics.
+                            </p>
+                            <a href="#" class="resource-link">Més informació <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <h3 class="resource-title">AWS Cloud Practitioner Essentials</h3>
+                            <p class="resource-description">
+                                Curs en línia d'Amazon Web Services que proporciona una introducció completa als serveis AWS i conceptes cloud.
+                            </p>
+                            <a href="https://aws.amazon.com/training/learn-about/cloud-practitioner/" target="_blank" class="resource-link">Accedir al curs <i class="fa-solid fa-external-link-alt"></i></a>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="resource-title">Microsoft Learn: Azure Fundamentals</h3>
+                            <p class="resource-description">
+                                Ruta d'aprenentatge gratuïta de Microsoft que cobreix els conceptes bàsics de l'administració cloud amb Azure.
+                            </p>
+                            <a href="https://learn.microsoft.com/learn/paths/az-900-describe-cloud-concepts/" target="_blank" class="resource-link">Explorar <i class="fa-solid fa-external-link-alt"></i></a>
+                        </div>
+                        
+                        <div class="resource-card">
+                            <div class="resource-icon">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <h3 class="resource-title">Google Cloud Skills Boost</h3>
+                            <p class="resource-description">
+                                Plataforma d'aprenentatge amb més de 700 labs pràctics, qüestionaris i cursos sobre tecnologies cloud de Google.
+                            </p>
+                            <a href="https://www.cloudskillsboost.google/" target="_blank" class="resource-link">Descobrir <i class="fa-solid fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="player">
+        <div class="now-playing">
+            <div class="topic-title">RA3. Cloud Computing</div>
+            <div class="uf-name">Índex i introducció</div>
+        </div>
+        <div class="player-controls">
+            <i class="fa-solid fa-backward-step"></i>
+            <i class="fa-solid fa-backward"></i>
+            <i class="fa-solid fa-play-circle"></i>
+            <i class="fa-solid fa-forward"></i>
+            <i class="fa-solid fa-forward-step"></i>
+            <i class="fa-solid fa-repeat"></i>
+        </div>
+        <div class="progress-container">
+            <div class="progress-time">0:00</div>
+            <div class="progress-bar"></div>
+            <div class="progress-time">5:30</div>
+        </div>
+        <div class="volume-control">
+            <i class="fa-solid fa-volume-high volume-icon"></i>
+            <div class="volume-bar"></div>
+        </div>
+    </div>
+
+    <!-- Additional script for visual enhancements -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate particles with random movements
+            const particles = document.querySelectorAll('.particle');
+            
+            particles.forEach(particle => {
+                // Set random starting positions
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                
+                // Set random sizes
+                const size = Math.random() * 30 + 10;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Set random animation delays
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+            });
+            
+            // Animate cards on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            const cards = document.querySelectorAll('.overview-card, .activity-card, .resource-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

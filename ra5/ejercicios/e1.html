@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA5 - Activitat 1: Automatització i Digitalització Industrial</title>
+    <link rel="icon" href="../../../img/luz.jpeg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../search/css/style.css">
+    <style>
+        /* Document-specific styles */
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .doc-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                var(--accent-color) 0%, 
+                transparent 100%);
+        }
+
+        .doc-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .doc-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .doc-meta-item i {
+            color: var(--accent-color);
+        }
+
+        .doc-section {
+            margin: 50px 0;
+            position: relative;
+            padding-left: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .doc-content {
+            line-height: 1.8;
+        }
+
+        .doc-content p {
+            margin-bottom: 20px;
+        }
+
+        .doc-content .emphasis {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .doc-content ul, .doc-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .doc-content li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .doc-content ul li::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .doc-content h3 {
+            font-size: 20px;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .doc-content h4 {
+            font-size: 18px;
+            margin: 25px 0 15px;
+            color: var(--accent-color);
+        }
+
+        .doc-content blockquote {
+            border-left: 3px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .doc-content code {
+            font-family: monospace;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+        .doc-content pre {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .doc-content pre code {
+            background-color: transparent;
+            color: var(--text-primary);
+            padding: 0;
+        }
+
+        .tech-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-box-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-box-content {
+            color: var(--text-primary);
+        }
+
+        .result-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .data-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+            flex: 1;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .data-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .data-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .data-value.positive {
+            color: #4caf50;
+        }
+
+        .data-value.negative {
+            color: #f44336;
+        }
+
+        .note-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #f9a826;
+            position: relative;
+        }
+
+        .note-box::before {
+            content: '📝';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: #f9a826;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(249, 168, 38, 0.3);
+        }
+
+        .note-content {
+            padding-top: 10px;
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .doc-container {
+                padding: 20px 15px;
+            }
+
+            .doc-title {
+                font-size: 28px;
+            }
+
+            .doc-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        /* Footer styles */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.prev i {
+            margin-right: 8px;
+        }
+
+        .nav-button.next i {
+            margin-left: 8px;
+        }
+
+        .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Custom animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-code"></i> Digitalització</h3>
+                <button id="sidebar-toggle">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">                <div class="nav-section">
+                    <h5>Resultats d'Aprenentatge</h5>
+                    <div class="nav-section-items">
+                        <a href="../../ra1/index.html"><i class="fas fa-leaf"></i> RA1: Economia lineal i circular · ODS</a>
+                        <a href="../../ra2/index.html"><i class="fas fa-microchip"></i> RA2: Quarta revolució industrial</a>
+                        <a href="../../ra3/index.html"><i class="fas fa-cloud"></i> RA3: Cloud Computing</a>
+                        <a href="../index.html" class="active"><i class="fas fa-digital-tachograph"></i> RA5: Transformació Digital</a>
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <h5>Activitats RA5</h5>
+                    <div class="nav-section-items">
+                        <a href="e1.html" class="active"><i class="fas fa-industry"></i> Activitat 1: Automatització</a>
+                        <a href="e2.html"><i class="fas fa-project-diagram"></i> Activitat 2: Transformació Digital</a>
+                        <a href="e3.html"><i class="fas fa-globe-europe"></i> Activitat 3: Innovació Tecnològica</a>
+                        <a href="e4.html"><i class="fas fa-network-wired"></i> Activitat 4: Sistemes ERP</a>
+                    </div>
+                </div>
+                  <div class="nav-section">
+                    <h5>Utilitats</h5>
+                    <div class="nav-section-items">
+                        <a href="../../search/index.html"><i class="fas fa-search"></i> Cercador</a>
+                        <a href="../../index.html"><i class="fas fa-home"></i> Pàgina Principal</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="javascript:void(0)"><i class="fas fa-gear"></i></a>
+                <a href="javascript:void(0)"><i class="fas fa-question-circle"></i></a>
+            </div>
+        </aside>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="particles-container"></div>
+            
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1>Transformació Digital i Tendències Tecnològiques</h1>
+                        <p>Resultat d'Aprenentatge 5 (RA5)</p>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="doc-container">
+                <div class="doc-header">
+                    <h1 class="doc-title">Activitat 1: Automatització i Digitalització Industrial</h1>
+                    <p>Anàlisi d'un cas real d'implementació de tecnologies d'automatització en processos industrials</p>
+                    
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Nivell: Avançat</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Temps estimat: 5h</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Darrera actualització: Octubre 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-tasks"></i> Objectius de l'activitat</h2>
+                    <div class="doc-content">
+                        <p>Aquesta activitat té com a objectiu principal identificar i analitzar casos reals d'implementació de tecnologies d'automatització i digitalització en entorns industrials, comprenent com aquestes tecnologies contribueixen a la generació d'ingressos i a l'eficiència operativa de les empreses.</p>
+                        
+                        <p>Desenvoluparàs les següents competències:</p>
+                        <ul>
+                            <li>Capacitat d'investigació i anàlisi de casos reals d'implementació tecnològica</li>
+                            <li>Comprensió dels mecanismes d'automatització industrial i la seva relació amb els resultats empresarials</li>
+                            <li>Habilitat per connectar tecnologies específiques amb avantatges competitius i generació d'ingressos</li>
+                            <li>Visió crítica sobre l'impacte de les tecnologies en els processos productius</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-clipboard"></i> Enunciat</h2>
+                    <div class="doc-content">
+                        <blockquote>
+                            Busca a la teva província un negoci, empresa o fàbrica els principals mitjans de generació d'ingressos dels quals procedeixin de l'automatització o de la digitalització en processos industrials.
+                            <br><br>
+                            Especifica la tecnologia en què es fonamenta i explica de quina manera aquesta estratègia constitueix la columna vertebral dels seus guanys.
+                        </blockquote>
+                        
+                        <div class="note-box">
+                            <div class="note-content">
+                                <p><strong>Consells per a la recerca:</strong> Busca empreses en polígons industrials a prop teu, investiga parcs tecnològics de la teva zona, o consulta associacions empresarials locals. També pots explorar casos d'estudi publicats per proveïdors de tecnologia industrial que hagin implementat solucions a empreses de la teva província.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-lightbulb"></i> Exemple de solució</h2>
+                    <div class="doc-content">
+                        <h3>Empresa: Normolde (Polígon Industrial La Ferrería, Montcada i Reixac, Barcelona)</h3>
+                        <p><strong>Sector:</strong> Fabricació de motlles d'injecció de plàstic per a la indústria automobilística</p>
+                        
+                        <h4>Tecnologies d'automatització i digitalització:</h4>
+                        <p>Normolde ha transformat completament el seu model de negoci tradicional de fabricació de motlles mitjançant la implementació d'un sistema integrat de Fabricació Intel·ligent (Smart Manufacturing) que inclou:</p>
+                        
+                        <div class="tech-box">
+                            <div class="tech-box-title"><i class="fas fa-robot"></i> Mecanitzat CNC de 5 eixos amb monitoratge en temps real</div>
+                            <div class="tech-box-content">
+                                <p>Les màquines CNC (Control Numèric Computaritzat) d'última generació estan equipades amb sensors IoT que recullen més de 200 paràmetres per segon, permetent ajustaments automàtics durant el mecanitzat de les peces metàl·liques de gran precisió.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-box">
+                            <div class="tech-box-title"><i class="fas fa-clone"></i> Bessons digitals (Digital Twins)</div>
+                            <div class="tech-box-content">
+                                <p>Cada motlle físic compta amb una rèplica digital exacta que permet simular virtualment el comportament del material plàstic durant la injecció, optimitzant el disseny abans de la fabricació.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-box">
+                            <div class="tech-box-title"><i class="fas fa-industry"></i> Sistema MES (Manufacturing Execution System)</div>
+                            <div class="tech-box-content">
+                                <p>Coordina tots els processos productius, des de la recepció de matèria primera fins a l'expedició del producte acabat, integrant-se amb el sistema ERP per gestionar comandes, inventari i recursos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-box">
+                            <div class="tech-box-title"><i class="fas fa-hands-helping"></i> Robòtica col·laborativa</div>
+                            <div class="tech-box-content">
+                                <p>Robots col·laboratius (cobots) treballen al costat dels operaris humans en tasques repetitives o perilloses, augmentant la seguretat i el rendiment.</p>
+                            </div>
+                        </div>
+                        
+                        <h4>Com aquestes tecnologies constitueixen la columna vertebral dels seus guanys:</h4>
+                        
+                        <div class="result-data">
+                            <div class="data-item">
+                                <div class="data-label">Reducció time-to-market</div>
+                                <div class="data-value positive">-40%</div>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">Taxa de defectes</div>
+                                <div class="data-value positive"><0,5%</div>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">Augment facturació</div>
+                                <div class="data-value positive">+35%</div>
+                            </div>
+                            <div class="data-item">
+                                <div class="data-label">Marge de benefici</div>
+                                <div class="data-value positive">17%</div>
+                            </div>
+                        </div>
+                        
+                        <ol>
+                            <li>
+                                <strong>Reducció del time-to-market en un 40%</strong>
+                                <p>Els clients de Normolde, principalment fabricants d'automòbils, valoren enormement aquesta capacitat de reduir el temps de desenvolupament de nous components, permetent-los arribar més ràpidament al mercat amb nous models.</p>
+                            </li>
+                            
+                            <li>
+                                <strong>Eliminació gairebé total d'errors i rebuigs</strong>
+                                <p>Les simulacions prèvies i el monitoratge en temps real garanteixen una taxa de defectes inferior al 0,5%, quan la mitjana del sector està al voltant del 3-5%.</p>
+                            </li>
+                            
+                            <li>
+                                <strong>Servei de manteniment predictiu remot</strong>
+                                <p>Les dades recollides pels sensors permeten predir quan un motlle necessitarà manteniment abans que es produeixi una fallada, oferint un servei de valor afegit que genera ingressos recurrents.</p>
+                            </li>
+                            
+                            <li>
+                                <strong>Flexibilitat i capacitat per a lots petits</strong>
+                                <p>L'automatització permet a Normolde mantenir costos competitius inclús en sèries curtes de producció, adaptant-se a la tendència de personalització massiva en la indústria automobilística.</p>
+                            </li>
+                            
+                            <li>
+                                <strong>Sostenibilitat i eficiència energètica</strong>
+                                <p>La digitalització ha permès reduir el consum energètic en un 25% i els residus materials en un 30%, proporcionant un avantatge competitiu en un sector cada vegada més conscient de la seva empremta ambiental.</p>
+                            </li>
+                        </ol>
+                        
+                        <p>El model de negoci de Normolde ha evolucionat de ser un simple fabricant de motlles a convertir-se en un proveïdor de solucions integrals d'enginyeria, on el 65% dels seus ingressos provenen directament dels avantatges competitius que ofereixen aquestes tecnologies. La seva facturació ha augmentat un 35% en els darrers tres anys, mentre que el marge de benefici ha crescut del 8% al 17%, demostrant com l'automatització i la digitalització industrial poden transformar completament la rendibilitat d'una empresa manufacturera tradicional.</p>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-file-alt"></i> Format de lliurament</h2>
+                    <div class="doc-content">
+                        <p>El lliurament d'aquesta activitat ha d'incloure:</p>
+                        
+                        <ul>
+                            <li>Document en format PDF amb l'anàlisi complet del cas escollit</li>
+                            <li>Identificació clara de l'empresa i la seva ubicació</li>
+                            <li>Descripció detallada de les tecnologies d'automatització implementades</li>
+                            <li>Anàlisi de l'impacte d'aquestes tecnologies en els resultats empresarials</li>
+                            <li>Referències i fonts d'informació consultades</li>
+                        </ul>
+                        
+                        <div class="note-box">
+                            <div class="note-content">
+                                <p><strong>Recorda:</strong> És important que demostris una comprensió profunda de com les tecnologies identificades contribueixen directament als resultats econòmics de l'empresa, no només una descripció superficial de la tecnologia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-check-circle"></i> Criteris d'avaluació</h2>
+                    <div class="doc-content">
+                        <ul>
+                            <li><strong>Investigació (30%):</strong> Profunditat i rigor en la recerca i selecció del cas d'estudi.</li>
+                            <li><strong>Anàlisi tècnic (30%):</strong> Comprensió i explicació adequada de les tecnologies identificades.</li>
+                            <li><strong>Anàlisi d'impacte (30%):</strong> Capacitat d'establir relacions clares entre la tecnologia i els resultats empresarials.</li>
+                            <li><strong>Presentació i estructura (10%):</strong> Claredat, coherència i format adequat del document.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Navigation buttons -->
+                <div class="navigation-buttons">
+                    <a href="../index.html" class="nav-button prev">
+                        <i class="fas fa-arrow-left"></i> Tornar a l'índex
+                    </a>
+                    <a href="e2.html" class="nav-button next">
+                        Següent activitat <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Player component -->
+        <div class="player">
+            <div class="player-track-info">
+                <div class="track-image">
+                    <img src="../../img/track-image.jpg" alt="Track">
+                </div>
+                <div class="track-details">
+                    <h4>Automatització Industrial</h4>
+                    <p>Podcast Tecnologies Emergents</p>
+                </div>
+            </div>
+            
+            <div class="player-controls">
+                <button class="control-button">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-button play">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-button">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <div class="player-timeline">
+                <span>1:24</span>
+                <div class="timeline-bar">
+                    <div class="timeline-progress"></div>
+                </div>
+                <span>3:45</span>
+            </div>
+            
+            <div class="player-volume">
+                <i class="fas fa-volume-up"></i>
+                <div class="volume-bar">
+                    <div class="volume-level"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sidebar toggle functionality
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+            
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-chevron-left')) {
+                icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+            } else {
+                icon.classList.replace('fa-chevron-right', 'fa-chevron-left');
+            }
+        });
+        
+        // Particle effect for the background
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.querySelector('.particles-container');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random positions
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 5 + 1;
+                const animDuration = Math.random() * 20 + 10;
+                
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDuration = `${animDuration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+        
+        // Play button toggle
+        document.querySelector('.play').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-play')) {
+                icon.classList.replace('fa-play', 'fa-pause');
+            } else {
+                icon.classList.replace('fa-pause', 'fa-play');
+            }
+        });
+    </script>
+</body>
+</html>

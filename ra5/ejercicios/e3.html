@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA5 - Activitat 3: Innovació Tecnològica per a Reptes Globals</title>
+    <link rel="icon" href="../../../img/luz.jpeg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../search/css/style.css">
+    <style>
+        /* Document-specific styles */
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .doc-header {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .doc-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                var(--accent-color) 0%, 
+                transparent 100%);
+        }
+
+        .doc-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--text-primary), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .doc-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .doc-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .doc-meta-item i {
+            color: var(--accent-color);
+        }
+
+        .doc-section {
+            margin: 50px 0;
+            position: relative;
+            padding-left: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .doc-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+        }
+
+        .doc-content {
+            line-height: 1.8;
+        }
+
+        .doc-content p {
+            margin-bottom: 20px;
+        }
+
+        .doc-content .emphasis {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .doc-content ul, .doc-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .doc-content li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .doc-content ul li::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .doc-content h3 {
+            font-size: 20px;
+            margin: 30px 0 15px;
+            color: var(--text-primary);
+        }
+
+        .doc-content h4 {
+            font-size: 18px;
+            margin: 25px 0 15px;
+            color: var(--accent-color);
+        }
+
+        .doc-content blockquote {
+            border-left: 3px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 20px 0;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .doc-content code {
+            font-family: monospace;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--accent-color);
+        }
+
+        .doc-content pre {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .doc-content pre code {
+            background-color: transparent;
+            color: var(--text-primary);
+            padding: 0;
+        }
+
+        .tech-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-box-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-box-content {
+            color: var(--text-primary);
+        }
+
+        .result-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .data-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            min-width: 120px;
+            flex: 1;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .data-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .data-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .data-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .data-value.positive {
+            color: #4caf50;
+        }
+
+        .data-value.negative {
+            color: #f44336;
+        }
+
+        .note-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #f9a826;
+            position: relative;
+        }
+
+        .note-box::before {
+            content: '📝';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: #f9a826;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 16px;
+            box-shadow: 0 2px 10px rgba(249, 168, 38, 0.3);
+        }
+
+        .note-content {
+            padding-top: 10px;
+            color: var(--text-primary);
+        }
+        
+        .challenge-card {
+            background: linear-gradient(145deg, rgba(30, 144, 255, 0.1), rgba(30, 144, 255, 0.05));
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 4px solid #1e90ff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+        
+        .challenge-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1e90ff;
+        }
+        
+        .innovation-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .innovation-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+        
+        .innovation-item:nth-child(1) {
+            border-bottom-color: #1e90ff; /* Blue */
+        }
+        
+        .innovation-item:nth-child(2) {
+            border-bottom-color: #4caf50; /* Green */
+        }
+        
+        .innovation-item:nth-child(3) {
+            border-bottom-color: #f44336; /* Red */
+        }
+        
+        .innovation-item:nth-child(4) {
+            border-bottom-color: #9c27b0; /* Purple */
+        }
+        
+        .innovation-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .innovation-title i {
+            color: var(--accent-color);
+        }
+        
+        .impact-label {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 5px 5px 5px 0;
+        }
+        
+        .impact-environmental {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+        
+        .impact-social {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+        
+        .impact-economic {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .doc-container {
+                padding: 20px 15px;
+            }
+
+            .doc-title {
+                font-size: 28px;
+            }
+
+            .doc-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+
+        /* Footer styles */
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.prev i {
+            margin-right: 8px;
+        }
+
+        .nav-button.next i {
+            margin-left: 8px;
+        }
+
+        .nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Custom animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-code"></i> Digitalització</h3>
+                <button id="sidebar-toggle">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">                <div class="nav-section">
+                    <h5>Resultats d'Aprenentatge</h5>
+                    <div class="nav-section-items">
+                        <a href="../../ra1/index.html"><i class="fas fa-leaf"></i> RA1: Economia lineal i circular · ODS</a>
+                        <a href="../../ra2/index.html"><i class="fas fa-microchip"></i> RA2: Quarta revolució industrial</a>
+                        <a href="../../ra3/index.html"><i class="fas fa-cloud"></i> RA3: Cloud Computing</a>
+                        <a href="../index.html" class="active"><i class="fas fa-digital-tachograph"></i> RA5: Transformació Digital</a>
+                    </div>
+                </div>
+                
+                <div class="nav-section">
+                    <h5>Activitats RA5</h5>
+                    <div class="nav-section-items">
+                        <a href="e1.html"><i class="fas fa-industry"></i> Activitat 1: Automatització</a>
+                        <a href="e2.html"><i class="fas fa-project-diagram"></i> Activitat 2: Transformació Digital</a>
+                        <a href="e3.html" class="active"><i class="fas fa-globe-europe"></i> Activitat 3: Innovació Tecnològica</a>
+                        <a href="e4.html"><i class="fas fa-network-wired"></i> Activitat 4: Sistemes ERP</a>
+                    </div>
+                </div>
+                  <div class="nav-section">
+                    <h5>Utilitats</h5>
+                    <div class="nav-section-items">
+                        <a href="../../search/index.html"><i class="fas fa-search"></i> Cercador</a>
+                        <a href="../../index.html"><i class="fas fa-home"></i> Pàgina Principal</a>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="javascript:void(0)"><i class="fas fa-gear"></i></a>
+                <a href="javascript:void(0)"><i class="fas fa-question-circle"></i></a>
+            </div>
+        </aside>
+        
+        <!-- Main content -->
+        <main class="main-content">
+            <div class="particles-container"></div>
+            
+            <header class="app-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1>Transformació Digital i Tendències Tecnològiques</h1>
+                        <p>Resultat d'Aprenentatge 5 (RA5)</p>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="doc-container">
+                <div class="doc-header">
+                    <h1 class="doc-title">Activitat 3: Innovació Tecnològica per a Reptes Globals</h1>
+                    <p>Anàlisi de tendències innovadores en la resolució de reptes globals</p>
+                    
+                    <div class="doc-meta">
+                        <div class="doc-meta-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Nivell: Avançat</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Temps estimat: 8h</span>
+                        </div>
+                        <div class="doc-meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Darrera actualització: Octubre 2023</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-tasks"></i> Objectius de l'activitat</h2>
+                    <div class="doc-content">
+                        <p>Aquesta activitat té com a objectiu principal explorar i analitzar com les innovacions tecnològiques es poden aplicar a la resolució de reptes globals, amb especial èmfasi en la seva relació amb les eines digitals i el seu impacte mediambiental.</p>
+                        
+                        <p>Desenvoluparàs les següents competències:</p>
+                        <ul>
+                            <li>Capacitat d'identificar i avaluar tendències innovadores en diferents sectors</li>
+                            <li>Habilitat per comprendre la interrelació entre tecnologia i reptes globals</li>
+                            <li>Pensament crític sobre l'impacte de les innovacions en la sostenibilitat</li>
+                            <li>Competència digital aplicada a l'anàlisi de tendències tecnològiques</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-clipboard"></i> Enunciat</h2>
+                    <div class="doc-content">
+                        <blockquote>
+                            Competència digital
+                            <br><br>
+                            Explora la web de l'IET (Institut Europeu d'Innovació i Tecnologia) i selecciona un repte global. Després, investiga sobre les idees/tendències més innovadores que estiguin transformant aquest sector.
+                            <br><br>
+                            Detalla almenys quatre ítems i la seva relació amb les eines digitals, explicant com afecten la producció, la distribució o el consum. Destaca també el seu impacte global en termes mediambientals.
+                        </blockquote>
+                        
+                        <div class="note-box">
+                            <div class="note-content">
+                                <p><strong>Recomanacions per a l'activitat:</strong></p>
+                                <ul>
+                                    <li>Visita el lloc web oficial de l'<a href="https://eit.europa.eu" target="_blank">Institut Europeu d'Innovació i Tecnologia (IET)</a> per explorar els diferents reptes i comunitats d'innovació.</li>
+                                    <li>Selecciona un repte que t'interessi entre les diferents àrees: clima, energia, salut, alimentació, manufactura avançada, mobilitat urbana, matèries primeres o digital.</li>
+                                    <li>Per a cada tendència o innovació que identifiquis, assegura't d'analitzar tant els aspectes tecnològics com el seu impacte econòmic, social i especialment mediambiental.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-lightbulb"></i> Exemple de solució</h2>
+                    <div class="doc-content">
+                        <div class="challenge-card">
+                            <div class="challenge-header">
+                                <div class="challenge-title">Mobilitat Urbana Sostenible</div>
+                                <div><i class="fas fa-car" style="font-size: 24px; color: #1e90ff;"></i></div>
+                            </div>
+                            <p>Després d'explorar la web de l'Institut Europeu d'Innovació i Tecnologia (IET), he seleccionat el repte global de mobilitat urbana sostenible, desenvolupat principalment a través de la comunitat d'innovació EIT Urban Mobility. Aquest repte busca transformar la manera com les persones i les mercaderies es mouen a les ciutats, reduint l'impacte mediambiental i millorant la qualitat de vida urbana.</p>
+                        </div>
+                        
+                        <h3>Tendències innovadores transformadores</h3>
+                        
+                        <div class="innovation-item">
+                            <h4 class="innovation-title"><i class="fas fa-mobile-alt"></i> Sistemes de Mobilitat com a Servei (MaaS - Mobility as a Service)</h4>
+                            
+                            <h5>Relació amb eines digitals:</h5>
+                            <ul>
+                                <li>Aplicacions mòbils integradores que unifiquen tots els mitjans de transport (públic, privat, compartit) en una única plataforma.</li>
+                                <li>Sistemes de pagament digital unificat mitjançant tecnologia blockchain per a transaccions segures entre diferents operadors.</li>
+                                <li>Algoritmes d'intel·ligència artificial que optimitzen rutes multimodals en temps real basant-se en trànsit, clima i preferències personals.</li>
+                                <li>Tecnologia API oberta que permet la interoperabilitat entre diferents serveis de mobilitat.</li>
+                            </ul>
+                            
+                            <h5>Impacte en la distribució i consum:</h5>
+                            <ul>
+                                <li>Reducció del 25-30% en la propietat de vehicles privats a les zones urbanes on s'ha implementat.</li>
+                                <li>Increment del 40% en l'ús de transport públic i mitjans sostenibles (bicicletes, patinets elèctrics).</li>
+                                <li>Democratització de l'accés a la mobilitat per a segments de població anteriorment exclosos.</li>
+                                <li>Optimització de l'ocupació dels vehicles, amb un increment mitjà del 60% en la taxa d'ocupació.</li>
+                            </ul>
+                            
+                            <h5>Impacte mediambiental:</h5>
+                            <div>
+                                <span class="impact-label impact-environmental">Emissions: -15-20% CO₂</span>
+                                <span class="impact-label impact-environmental">Congestió: -30%</span>
+                                <span class="impact-label impact-environmental">Espai d'aparcament: -20%</span>
+                                <span class="impact-label impact-environmental">Partícules PM2.5/NOx: -18%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="innovation-item">
+                            <h4 class="innovation-title"><i class="fas fa-traffic-light"></i> Infraestructura urbana intel·ligent</h4>
+                            
+                            <h5>Relació amb eines digitals:</h5>
+                            <ul>
+                                <li>Xarxa de sensors IoT interconnectats que monitoritzen el flux de trànsit, qualitat de l'aire i soroll.</li>
+                                <li>Semàfors intel·ligents amb visió per computador que s'adapten en temps real segons el volum de trànsit.</li>
+                                <li>Sistemes de gestió energètica que optimitzen el consum d'enllumenat públic i càrrega de vehicles elèctrics.</li>
+                                <li>Bessons digitals (digital twins) de ciutats que permeten simular l'impacte de canvis en la infraestructura.</li>
+                            </ul>
+                            
+                            <h5>Impacte en la producció i distribució:</h5>
+                            <ul>
+                                <li>Reducció del temps de desplaçament mitjà en un 15-25%, augmentant la productivitat.</li>
+                                <li>Optimització de la distribució d'última milla amb zones de càrrega/descàrrega dinàmiques gestionades digitalment.</li>
+                                <li>Millora de la seguretat viària amb reducció d'accidents de trànsit en un 30%.</li>
+                                <li>Priorització dinàmica del transport públic en funció de la puntualitat i ocupació.</li>
+                            </ul>
+                            
+                            <h5>Impacte mediambiental:</h5>
+                            <div>
+                                <span class="impact-label impact-environmental">Consum energètic: -15-20%</span>
+                                <span class="impact-label impact-environmental">Emissions CO₂: -17%</span>
+                                <span class="impact-label impact-environmental">Permeabilitat del sòl: Millora</span>
+                                <span class="impact-label impact-environmental">Illa de calor urbana: -1,5-2°C</span>
+                            </div>
+                        </div>
+                        
+                        <div class="innovation-item">
+                            <h4 class="innovation-title"><i class="fas fa-box"></i> Microhubs logístics urbans</h4>
+                            
+                            <h5>Relació amb eines digitals:</h5>
+                            <ul>
+                                <li>Plataformes de gestió logística que optimitzen la consolidació de paquets utilitzant algoritmes avançats.</li>
+                                <li>Sistemes de traçabilitat basats en blockchain que permeten el seguiment de cada enviament en temps real.</li>
+                                <li>Robots autònoms i drones de repartiment connectats a una xarxa 5G per a lliuraments de darrer quilòmetre.</li>
+                                <li>Software de predicció de demanda que optimitza la preassignació d'inventari als microhubs.</li>
+                            </ul>
+                            
+                            <h5>Impacte en la distribució:</h5>
+                            <ul>
+                                <li>Reducció del 60% en la quantitat de vehicles comercials necessaris per a distribució urbana.</li>
+                                <li>Disminució del 40% en els costos logístics de darrer quilòmetre.</li>
+                                <li>Millora dels temps de lliurament en un 35%, amb major precisió en les franges horàries.</li>
+                                <li>Increment del 25% en la capacitat de gestió d'enviaments durant pics de demanda (Black Friday, Nadal).</li>
+                            </ul>
+                            
+                            <h5>Impacte mediambiental:</h5>
+                            <div>
+                                <span class="impact-label impact-environmental">Emissions CO₂: -65%</span>
+                                <span class="impact-label impact-environmental">Contaminació acústica: -70%</span>
+                                <span class="impact-label impact-environmental">Desgast de paviment: Menor</span>
+                                <span class="impact-label impact-environmental">Residus d'embalatge: -30%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="innovation-item">
+                            <h4 class="innovation-title"><i class="fas fa-car-side"></i> Vehicles autònoms compartits</h4>
+                            
+                            <h5>Relació amb eines digitals:</h5>
+                            <ul>
+                                <li>Intel·ligència artificial i aprenentatge profund per a la conducció autònoma.</li>
+                                <li>Sistemes LIDAR, radar i càmeres d'alta resolució per a detecció i resposta a l'entorn.</li>
+                                <li>Plataformes de gestió de flota basades en cloud computing que optimitzen la distribució de vehicles.</li>
+                                <li>Apps de reserva i seguiment que s'integren amb el perfil de l'usuari i les seves preferències.</li>
+                            </ul>
+                            
+                            <h5>Impacte en el consum:</h5>
+                            <ul>
+                                <li>Transformació del model de propietat a model d'accés, amb reducció del 75% en vehicles privats.</li>
+                                <li>Democratització de l'accés a transport de qualitat en zones perifèriques mal connectades.</li>
+                                <li>Reducció dels costos de mobilitat per usuari en un 40-60%.</li>
+                                <li>Increment de l'accessibilitat per a persones amb mobilitat reduïda, gent gran i nens.</li>
+                            </ul>
+                            
+                            <h5>Impacte mediambiental:</h5>
+                            <div>
+                                <span class="impact-label impact-environmental">Emissions per passatger/km: -80%</span>
+                                <span class="impact-label impact-environmental">Necessitat d'aparcament: -90%</span>
+                                <span class="impact-label impact-environmental">Distància recorreguda: -15%</span>
+                                <span class="impact-label impact-economic">Transició a flotes elèctriques: 100%</span>
+                            </div>
+                        </div>
+                        
+                        <p>Aquests avenços en mobilitat urbana sostenible representen no només una revolució tecnològica, sinó una transformació profunda en com s'organitzen les ciutats i en la qualitat de vida dels seus habitants. La confluència d'aquestes innovacions amb eines digitals avançades està accelerant la transició cap a un model urbà més eficient, inclusiu i respectuós amb el medi ambient. Segons les projeccions de l'IET, l'adopció completa d'aquestes tecnologies podria contribuir fins a un 30% en la reducció d'emissions urbanes necessària per complir amb els objectius de l'Acord de París sobre el canvi climàtic.</p>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-file-alt"></i> Format de lliurament</h2>
+                    <div class="doc-content">
+                        <p>El lliurament d'aquesta activitat ha d'incloure:</p>
+                        
+                        <ul>
+                            <li>Document en format PDF amb l'anàlisi complet del repte seleccionat</li>
+                            <li>Identificació clara del repte global escollit de l'IET</li>
+                            <li>Descripció detallada de les quatre innovacions o tendències seleccionades</li>
+                            <li>Anàlisi de la relació de cada innovació amb eines digitals</li>
+                            <li>Explicació de l'impacte en la producció, distribució o consum</li>
+                            <li>Avaluació de l'impacte mediambiental</li>
+                            <li>Referències i fonts d'informació consultades</li>
+                        </ul>
+                        
+                        <div class="note-box">
+                            <div class="note-content">
+                                <p><strong>Aspectes a valorar:</strong> Es valorarà especialment la capacitat d'establir connexions entre les tecnologies digitals i la seva aplicació pràctica en la resolució d'un repte global, així com l'anàlisi crítica dels seus impactes positius i potencialment negatius.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="doc-section">
+                    <h2 class="section-title"><i class="fas fa-check-circle"></i> Criteris d'avaluació</h2>
+                    <div class="doc-content">
+                        <ul>
+                            <li><strong>Selecció i contextualització del repte (15%):</strong> Justificació i rellevància del repte global escollit.</li>
+                            <li><strong>Identificació d'innovacions (25%):</strong> Pertinència i actualitat de les tendències tecnològiques seleccionades.</li>
+                            <li><strong>Anàlisi de relació amb eines digitals (20%):</strong> Comprensió de les tecnologies digitals subjacents.</li>
+                            <li><strong>Anàlisi d'impacte socioeconòmic (20%):</strong> Avaluació dels efectes en producció, distribució o consum.</li>
+                            <li><strong>Avaluació d'impacte mediambiental (15%):</strong> Profunditat en l'anàlisi de l'empremta ecològica.</li>
+                            <li><strong>Presentació i estructura (5%):</strong> Claredat, coherència i format adequat del document.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Navigation buttons -->
+                <div class="navigation-buttons">
+                    <a href="e2.html" class="nav-button prev">
+                        <i class="fas fa-arrow-left"></i> Activitat anterior
+                    </a>
+                    <a href="e4.html" class="nav-button next">
+                        Següent activitat <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Player component -->
+        <div class="player">
+            <div class="player-track-info">
+                <div class="track-image">
+                    <img src="../../img/track-image.jpg" alt="Track">
+                </div>
+                <div class="track-details">
+                    <h4>Innovació per a Reptes Globals</h4>
+                    <p>Podcast Tendències Tecnològiques</p>
+                </div>
+            </div>
+            
+            <div class="player-controls">
+                <button class="control-button">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button class="control-button play">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-button">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+            </div>
+            
+            <div class="player-timeline">
+                <span>1:24</span>
+                <div class="timeline-bar">
+                    <div class="timeline-progress"></div>
+                </div>
+                <span>3:45</span>
+            </div>
+            
+            <div class="player-volume">
+                <i class="fas fa-volume-up"></i>
+                <div class="volume-bar">
+                    <div class="volume-level"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sidebar toggle functionality
+        document.getElementById('sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('expanded');
+            
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-chevron-left')) {
+                icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+            } else {
+                icon.classList.replace('fa-chevron-right', 'fa-chevron-left');
+            }
+        });
+        
+        // Particle effect for the background
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.querySelector('.particles-container');
+            
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random positions
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const size = Math.random() * 5 + 1;
+                const animDuration = Math.random() * 20 + 10;
+                
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDuration = `${animDuration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        });
+        
+        // Play button toggle
+        document.querySelector('.play').addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-play')) {
+                icon.classList.replace('fa-play', 'fa-pause');
+            } else {
+                icon.classList.replace('fa-pause', 'fa-play');
+            }
+        });
+    </script>
+</body>
+</html>
